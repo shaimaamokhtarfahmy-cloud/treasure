@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>غواصة البحث عن الكنز</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- طبقات البحر والخلفية -->
+        <div id="ocean-bg"></div>
+        
+        <!-- واجهة التحكم العلوية -->
+        <div id="hud">
+            <div class="control-box">
+                <label for="lesson-index">اختر الدرس:</label>
+                <select id="lesson-index" onchange="jumpToLesson()"></select>
+            </div>
+            <div class="depth-meter">العمق: <span id="depth">0</span> متر 🌊</div>
+            <button id="ask-btn" onclick="drawQuestion()">تشغيل الرادار 📡</button>
+        </div>
+
+        <!-- الغواصة -->
+        <div id="submarine-container">
+            <div id="submarine">🚢</div>
+        </div>
+
+        <!-- رسائل اللعبة -->
+        <div id="feedback-message" class="hidden"></div>
+    </div>
+
+    <!-- مربع السؤال والشرح -->
+    <div id="quiz-modal" class="hidden">
+        <div class="modal-content">
+            
+            <!-- قسم الشرح -->
+            <div id="lesson-section" class="hidden">
+                <h2 id="lesson-title"></h2>
+                <div class="lesson-box">
+                    <p id="lesson-text"></p>
+                </div>
+                <button id="understand-btn" onclick="showQuestion()" class="action-btn">استعد للسؤال 🚀</button>
+            </div>
+            
+            <!-- قسم السؤال -->
+            <div id="question-section" class="hidden">
+                <p id="chapter-branch-label" class="badge"></p>
+                <h3 id="question-counter"></h3>
+                <h2 id="question-text"></h2>
+                <div id="options"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
