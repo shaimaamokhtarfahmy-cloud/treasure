@@ -1,0 +1,116 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    user-select: none;
+    background-color: #001f3f;
+}
+
+#game-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* خلفية البحر التي تتغير ألوانها عند الغوص */
+#ocean-bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to bottom, #87CEEB 0%, #1E90FF 20%, #00008B 80%, #000033 100%);
+    background-size: 100% 400%;
+    background-position: 0% 0%;
+    transition: background-position 1.5s ease-in-out;
+    z-index: -1;
+}
+
+#hud {
+    position: absolute;
+    top: 20px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 10;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.control-box { display: flex; gap: 10px; font-weight: bold; align-items: center; }
+select { padding: 5px; border-radius: 5px; font-size: 14px; }
+
+.depth-meter {
+    font-weight: bold; font-size: 18px; color: #001f3f;
+    border-left: 2px solid #ccc; padding-left: 15px; margin-left: 5px;
+}
+
+button {
+    padding: 10px 20px; cursor: pointer; background-color: #ff851b;
+    color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 16px;
+    transition: 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+button:hover:not(:disabled) { background-color: #ff6600; transform: translateY(-2px); }
+
+/* الغواصة وحركتها */
+#submarine-container {
+    position: absolute;
+    top: 25%;
+    transition: top 1s ease-in-out;
+}
+
+#submarine {
+    font-size: 100px;
+    filter: drop-shadow(0 10px 10px rgba(0,0,0,0.5));
+    animation: bobbing 3s ease-in-out infinite;
+}
+
+.dive-anim { animation: diveDown 1s ease-in-out !important; }
+
+@keyframes bobbing {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(2deg); }
+}
+
+@keyframes diveDown {
+    0% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(30px) rotate(15deg); }
+    100% { transform: translateY(0) rotate(0deg); }
+}
+
+#feedback-message {
+    position: absolute; top: 40%; font-size: 35px; font-weight: bold;
+    color: #ffdc00; text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
+    z-index: 20; animation: popIn 1.5s ease-out forwards;
+}
+@keyframes popIn {
+    0% { opacity: 0; transform: scale(0.5); }
+    20% { opacity: 1; transform: scale(1.2); }
+    80% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(1); }
+}
+
+/* المربع الحواري */
+.hidden { display: none !important; }
+#quiz-modal {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 30, 0.85); display: flex; justify-content: center; align-items: center; z-index: 100;
+}
+.modal-content {
+    background: white; padding: 30px; border-radius: 15px; width: 90%; max-width: 450px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8); text-align: center;
+}
+.lesson-box { background: #f0f8ff; padding: 15px; border-radius: 8px; border-right: 5px solid #0074d9; margin-bottom: 20px; }
+#lesson-text { font-size: 18px; line-height: 1.6; font-weight: bold; color: #001f3f;}
+.badge { background: #39cccc; color: #001f3f; padding: 5px 10px; border-radius: 5px; font-weight: bold; font-size: 12px;}
+#options { display: flex; flex-direction: column; gap: 10px; margin-top: 20px;}
+.opt-btn { background-color: #0074d9; }
+.opt-btn:hover { background-color: #0056b3; }
+
+
+
